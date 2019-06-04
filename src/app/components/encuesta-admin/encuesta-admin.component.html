@@ -1,0 +1,30 @@
+<div class="loading" *ngIf="!administrador">
+  Cargando...
+</div>
+<div class="alert alert-warning" *ngIf="encuestas && encuestas.length == 0">
+  El administrador no ha respondido a ningúna encuesta
+</div>
+<div *ngFor="let encuesta of encuestas | paginate: {itemsPerPage:1, currentPage: p }">
+  <div class="card">
+      <div class="card-header"><small>Recibido hace {{encuesta.created_at | dateAgo}}</small></div>
+      <div class="card-body">
+        <ul>
+          <li>
+            Valoración de nuestro servicio: {{encuesta.respuesta}}
+          </li>
+          <li>
+          	Objeción principal: {{encuesta.objecion}}
+          </li>
+          <li>
+            Comentario: {{encuesta.comentario}}
+          </li>
+        </ul>
+      </div> 
+  </div>
+  <div class="text-center pt-3">
+      <pagination-controls [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
+      (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div> 
+
+

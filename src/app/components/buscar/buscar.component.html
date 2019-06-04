@@ -1,0 +1,24 @@
+<div class="loading pt-3" *ngIf="!administradores">
+  Cargando...
+</div>
+<div class="row">
+  <div class="col-7 pt-3">
+    <h1>Estas buscando: </h1>
+    <hr>
+  </div>  
+  <div class="col-12 pt-3" id="administradores">
+      <table>
+          <tr>
+            <th>Administrador</th>
+            <th>Email</th>
+            <th>Empresa</th>
+            <th>Cargo</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <app-admin-item [admin]="admin" [index]="i" *ngFor="let admin of administradores; let i = index"></app-admin-item>
+      </table>
+    </div>
+</div>
+
+

@@ -1,24 +1,22 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { UserService } from './services/user.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'],
   providers: [UserService]
 })
-export class AppComponent implements OnInit, DoCheck{
-  public title = 'cacciutulo';
+export class NavbarComponent implements OnInit {
   public identity;
   public token;
 
   constructor(
     public _userService: UserService
-  ){
+  ) {
     this.loadUser();
-  }
-
-  ngOnInit(){
+   }
+   ngOnInit(){
     console.log('WebApp cargada correctamente');
   }
 
@@ -30,4 +28,5 @@ export class AppComponent implements OnInit, DoCheck{
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
   }
+
 }

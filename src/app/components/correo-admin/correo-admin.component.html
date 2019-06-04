@@ -1,0 +1,14 @@
+<div class="loading" *ngIf="!administrador">
+    Cargando...
+  </div>
+  <div class="alert alert-warning" *ngIf="correos && correos.length == 0">
+      Aún no se ha enviado invitación para encuesta de satisfacción
+    </div>
+ <div class="col-10">
+   <div *ngFor="let correo of correos | paginate: {itemsPerPage:3, currentPage: p }" class="card bg-primary text-white mt-2">
+      <div class="card-body" style="font-size: 1.2em;">
+        <strong>Enviado hace {{correo.created_at | dateAgo}}</strong>
+      </div>
+    </div> 
+ </div>
+

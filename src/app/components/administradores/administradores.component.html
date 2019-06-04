@@ -1,0 +1,101 @@
+<div class="loading pt-3" *ngIf="!administradores">
+  Cargando...
+</div>
+<div class="row">
+    <div class="col-7 pt-3">
+      <h1>Listado de administradores</h1>
+      <hr>
+    </div>
+    <div class="alert alert-success col-5 mt-3" style="height: 50px;" *ngIf="status == 'success'">
+        {{msg}}
+    </div>
+    <div class="col-md-6">
+      <a [routerLink]="['/crear-admin']" class="btn btn-primary">CREAR ADMINISTRADOR</a>
+    </div>
+
+    <div class="col-md-6">
+      <!-- <form class="navbar-form navbar-left form-inline" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Busca administrador" (keyup.enter)="buscarAdmin(buscarTexto.value)" #buscarTexto>
+      </div>
+        <button type="button" (click)="buscarAdmin(buscarTexto.value)" class="btn btn-outline-primary">
+          Buscar
+        </button>
+      </form> -->
+    </div>
+    
+    <div class="col-12 pt-3" id="administradores">
+        <table>
+            <tr>
+              <th>Administrador</th>
+              <th>Email</th>
+              <th>Empresa</th>
+              <th>Cargo</th>
+              <th></th>
+              <th></th>
+            </tr>
+
+           <tr *ngFor="let administrador of administradores | paginate: {itemsPerPage:7, currentPage: p }">
+             <td>
+               {{administrador.name}} {{administrador.surname}}
+             </td>
+             <td>
+               {{administrador.email}}
+             </td>
+             <td>
+               {{administrador.empresa}}
+             </td>
+             <td style="width: 150px;">
+              {{administrador.cargo}}
+             </td>
+             <td>
+                <a [routerLink]="['/administrador', administrador.id]" class="btn btn-success">Enviar Correo / Ver respuestas</a>
+             </td>
+             <td>
+               <a [routerLink]="['/editar-administrador', administrador.id]" class="btn btn-primary">Actualizar</a>
+             </td>
+             <td>
+               <!-- Button to Open the Modal -->
+              <button type="button" class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#myModal'+administrador.id">
+                  Eliminar
+              </button>
+
+              <!-- The Modal -->
+              <div class="modal" id="{{ 'myModal'+administrador.id }}">
+                <div class="modal-dialog">
+              <div class="modal-content">
+            
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">¿Quieres borrar este administrador?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+            
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p>
+                  ¿Vas a borrar definitivamente a {{administrador.name}} {{administrador.surname}}?
+                </p>
+                
+                <p class="alert-danger p-4">Si continuas la información no podra recuperarse</p>
+              </div>
+            
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <a (click)="deleteAdmin(administrador.id)" class="btn btn-danger text-white" data-dismiss="modal">Eliminar</a>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+            </td>
+          </tr>
+        </table>
+      <div class="text-center pt-5">
+        <pagination-controls [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
+        (pageChange)="p = $event"></pagination-controls>
+      </div>
+      </div>
+</div>
+
+

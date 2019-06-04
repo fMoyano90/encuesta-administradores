@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-7 text-center">
+      <h2 class="pt-1">
+
+        Actualizar datos del usuario 
+
+      </h2>
+      <hr>
+  </div>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-12" style="
+    display:flex;
+    justify-content: center;
+    min-height: 100vh;">
+
+      <form #editarUser (ngSubmit)="onSubmit(editarUser)" style="width:500px" *ngIf="usuario">
+
+        <div class="form-group">
+          <label for="name">Nombre:</label>
+          <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="usuario.name" required pattern="[a-zA-Z]+">
+          <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre es obligatorio</small>
+
+          <label for="surname">Apellido:</label>
+          <input type="text" name="surname" class="form-control" #surname="ngModel" [(ngModel)]="usuario.surname" required pattern="[a-zA-Z]+">
+          <small *ngIf="!surname.valid && surname.touched" class="invalid-feedback d-block">Los apellidos son obligatorios</small>
+
+          <label for="email">E-mail:</label>
+          <input type="email" name="email" class="form-control" #email="ngModel" [(ngModel)]="usuario.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+          <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">Ingresa un e-mail valido</small>
+          
+          <label for="role">Rol:</label>
+          <select name="role" class="form-control" #role="ngModel" [(ngModel)]="usuario.role" required>
+            <option *ngFor="let rol_opcion of role_values">{{rol_opcion}}</option>
+          </select>
+          <small *ngIf="!role.valid && role.touched" class="invalid-feedback d-block">Este campo es requerido</small>
+
+          <div class="text-center pt-4">
+           <input type="submit" class="btn btn-outline-primary" value="Guardar" [disabled]="editarUser.invalid">
+           <a [routerLink]="['/usuarios']"> | Volver al listado de usuarios</a>
+          </div>
+      </div>
+      </form>
+  </div>
+  

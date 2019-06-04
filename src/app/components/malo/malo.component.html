@@ -1,0 +1,31 @@
+<div class="loading" *ngIf="!administrador">
+    Cargando...
+  </div>
+  
+  <div class="row" *ngIf="administrador">
+    <div class="col-12 text-center mt-4">
+      <h1>{{administrador.name}} {{administrador.surname}}</h1>
+      <h2>Ayudanos a mejorar nuestros servicios</h2>
+  
+  
+      <div class="offset-3 col-6 text-center mt-4">
+        <h3><small>Indicanos con cúal punto no estas conforme</small></h3>
+        <form #correoForm="ngForm" (ngSubmit)="onSubmit(correoForm)">
+            <input type="text" name="admin_id" style="display: none">
+            <input type="text" name="respuesta" style="display: none">
+            <small *ngIf="!objecion.valid && objecion.touched" class="valid-feedback d-block">Ayudanos a mejorar, indicanos el ítem con el que no estas conforme</small>
+            <select type="text" name="objecion" class="form-control mb-3" #objecion="ngModel" [(ngModel)]="encuesta.objecion" required>
+              <option value="Tiempo de respuesta">Tiempo de respuesta</option>
+              <option value="Calidad de la información">Calidad de la información</option>
+              <option value="Disposición del personal">Disposición del personal</option>
+              <option value="Infraestructura y equipos">Infraestructura y equipos</option>
+              <option value="Cumplimiento de condiciones y servicios">Cumplimiento de condiciones y servicios</option>
+            </select>
+            <h3><small>Dejanos un comentario, tú opinión nos importa</small></h3>
+            <textarea class="form-control" rows="5" name="comentario" #comentario="ngModel" [(ngModel)]="encuesta.comentario" required></textarea>
+            <small *ngIf="!comentario.valid && comentario.touched" class="valid-feedback d-block">Dejanos un comentario, tú opinión nos importa</small>
+            <input type="submit" value="FINALIZAR ENCUESTA" class="btn btn-primary mt-3">
+        </form>
+      </div>
+    </div>
+  </div>

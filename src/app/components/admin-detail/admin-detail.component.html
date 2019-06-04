@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-12 pt-3">
+    <div class="row"> 
+      <div class="col-6">
+        <h2>Información del administrador</h2>
+      </div>
+      <div class="alert alert-success col-5" *ngIf="status == 'success'">
+        El correo se ha enviado exitosamente 
+      </div>
+      <div class="alert alert-danger col-5" *ngIf="status == 'error'">
+        El correo no se ha enviado
+      </div> 
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-6" *ngIf="administrador">
+        <p><strong>Nombre:</strong> {{administrador.name+' '+administrador.surname}}</p> 
+        <p><strong>Email:</strong> {{administrador.email}}</p>
+        <p><strong>Empresa:</strong> {{administrador.empresa}}</p> 
+        <p><strong>Cargo:</strong> {{administrador.cargo}}</p> 
+      </div>
+      <div class="col-6 text-center pt-2">
+        <h3>Envia una invitación personalizada para responder encuesta de satisfacción</h3>
+        <form #correoForm="ngForm" (ngSubmit)="onSubmit(correoForm)">
+          <input type="text" name="admin_id" #admin_id="ngModel" [(ngModel)]="correo.admin_id" style="display: none">
+          <input type="text" name="name" #name="ngModel" [(ngModel)]="correo" style="display: none">
+          <input type="text" name="surname" #surname="ngModel" [(ngModel)]="correo" style="display: none">
+          <input type="text" name="email" #email="ngModel" [(ngModel)]="correo" style="display: none">
+          <input type="text" name="link" #link="ngModel" [(ngModel)]="correo" style="display: none">
+          <input type="submit" value="ENVIAR INVITACIÓN" class="btn btn-lg btn-primary mt-3">
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <h2>Últimas invitaciones</h2>
+        <hr>
+        <app-correo-admin></app-correo-admin>
+      </div>
+      <div class="col-6 pt-1">
+          <h3>Respuestas recibidas</h3>
+          <hr>
+          <app-encuesta-admin></app-encuesta-admin>
+        </div>
+    </div>
+  </div>
+</div>
