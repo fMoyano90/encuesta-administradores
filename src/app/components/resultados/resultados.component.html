@@ -8,22 +8,59 @@
 <table class="table table-bordered table-primary">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Respuesta</th>
       <th scope="col">Objeción</th>
       <th scope="col">Comentario</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Hora</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let resultado of encuestas | paginate: {itemsPerPage:5, currentPage: p }; index as i">
-      <td>{{i+1}}</td>
       <td>{{resultado.respuesta}}</td>
       <td>{{resultado.objecion}}</td>
       <td>{{resultado.comentario}}</td>
+      <td>{{resultado.created_at | date:'dd/MM/y'}}</td>
+      <td>{{resultado.created_at | date:'shortTime'}}</td>
     </tr>
   </tbody>
 </table>
 <div class="text-center pt-3">
   <pagination-controls [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
   (pageChange)="p = $event"></pagination-controls>
+</div>
+
+
+<div class="row text-center mb-5 pb-5 pt-5" *ngIf="encuestas && correos">
+  <div class="col">
+    <h2><small><strong>RESULTADOS</strong></small></h2>
+    <hr>
+    <p>Respuestas recibidas: <strong>{{encuestas.length}}</strong></p>
+    <p>Encuestas enviadas: <strong>{{correos.length}}</strong></p>
+  </div>
+  
+  <div class="col" *ngIf="respuestasBuenas">
+      <img src="assets/img/bueno.png" [ngClass]="{'tcara-1': (respuestasBuenas.length*100)/encuestas.length <= 20, 
+                                                  'tcara-2': (respuestasBuenas.length*100)/encuestas.length >= 21 && (respuestasBuenas.length*100)/encuestas.length <= 40,
+                                                  'tcara-3': (respuestasBuenas.length*100)/encuestas.length >= 41 && (respuestasBuenas.length*100)/encuestas.length <= 60,
+                                                  'tcara-4': (respuestasBuenas.length*100)/encuestas.length >= 61 && (respuestasBuenas.length*100)/encuestas.length <= 80,
+                                                  'tcara-5': (respuestasBuenas.length*100)/encuestas.length >= 81 && (respuestasBuenas.length*100)/encuestas.length <= 100 }">
+      <p><strong>{{(respuestasBuenas.length*100)/encuestas.length | number: '1.1-1'}}%</strong></p>
+  </div>
+  <div class="col" *ngIf="respuestasIntermedias">
+       <img src="assets/img/intermedio.png" [ngClass]="{'tcara-1': (respuestasIntermedias.length*100)/encuestas.length <= 20, 
+                                                        'tcara-2': (respuestasIntermedias.length*100)/encuestas.length >= 21 && (respuestasBuenas.length*100)/encuestas.length <= 40,
+                                                        'tcara-3': (respuestasIntermedias.length*100)/encuestas.length >= 41 && (respuestasBuenas.length*100)/encuestas.length <= 60,
+                                                        'tcara-4': (respuestasIntermedias.length*100)/encuestas.length >= 61 && (respuestasBuenas.length*100)/encuestas.length <= 80,
+                                                        'tcara-5': (respuestasIntermedias.length*100)/encuestas.length >= 81 && (respuestasBuenas.length*100)/encuestas.length <= 100 }">
+       <p><strong>{{(respuestasIntermedias.length*100)/encuestas.length | number: '1.1-1'}}%</strong></p>
+  </div>
+  <div class="col" *ngIf="respuestasMalas">
+       <img src="assets/img/malo.png" [ngClass]="{'tcara-1': (respuestasMalas.length*100)/encuestas.length <= 20, 
+                                                  'tcara-2': (respuestasMalas.length*100)/encuestas.length >= 21 && (respuestasBuenas.length*100)/encuestas.length <= 40,
+                                                  'tcara-3': (respuestasMalas.length*100)/encuestas.length >= 41 && (respuestasBuenas.length*100)/encuestas.length <= 60,
+                                                  'tcara-4': (respuestasMalas.length*100)/encuestas.length >= 61 && (respuestasBuenas.length*100)/encuestas.length <= 80,
+                                                  'tcara-5': (respuestasMalas.length*100)/encuestas.length >= 81 && (respuestasBuenas.length*100)/encuestas.length <= 100 }">
+       <p><strong>{{(respuestasMalas.length*100)/encuestas.length | number: '1.1-1'}}%</strong></p>
+   </div>
 </div>

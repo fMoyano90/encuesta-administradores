@@ -5,6 +5,7 @@ export class Administrador {
     public surname: string,
     public email: string,
     public empresa: string,
-    public cargo: string
+    public cargo: string,
+    public status: number
     ) {}
 }

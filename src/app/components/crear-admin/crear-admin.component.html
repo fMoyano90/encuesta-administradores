@@ -13,10 +13,10 @@
   <div class="row">
     
     <div class="alert alert-success col-md-5 mt-3" *ngIf="status == 'success'">
-      El administrador fue modificado exitosamente 
+      El administrador fue creado exitosamente 
     </div>
-    <div class="alert alert-danger col-md-5 mt-3" *ngIf="status == 'error'">
-      El administrador no se ha modificado, intenta nuevamente
+    <div class="alert alert-danger col-md-6 mt-3" *ngIf="status == 'error'">
+      El administrador no se ha creado, intenta nuevamente más tarde
     </div>
 
     <div class="col-12" style="
@@ -26,11 +26,11 @@
       <form #adminForm="ngForm" (ngSubmit)="onSubmit(adminForm)" class="col-md-5">
         <div class="form-group">
            <label for="name">Nombre:</label>
-           <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="administrador.name" required pattern="[a-zA-Z]+">
+           <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="administrador.name" required pattern="[a-z A-Z]+">
            <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">El nombre es obligatorio</small>
 
            <label for="surname">Apellido:</label>
-           <input type="text" name="surname" class="form-control" #surname="ngModel" [(ngModel)]="administrador.surname" required pattern="[a-zA-Z]+">
+           <input type="text" name="surname" class="form-control" #surname="ngModel" [(ngModel)]="administrador.surname" required pattern="[a-z A-Z]+">
            <small *ngIf="!surname.valid && surname.touched" class="invalid-feedback d-block">Los apellidos son obligatorios</small>
 
            <label for="email">E-mail:</label>

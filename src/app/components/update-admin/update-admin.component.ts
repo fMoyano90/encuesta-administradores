@@ -32,7 +32,7 @@ export class UpdateAdminComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.administrador = new Administrador(1, '', '', '', '', '');
+    this.administrador = new Administrador(1, '', '', '', '', '', 1);
     this.getAdministrador();
   }
 

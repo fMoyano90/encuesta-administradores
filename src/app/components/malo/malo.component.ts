@@ -85,6 +85,23 @@ export class MaloComponent implements OnInit {
         console.log(<any>error);
       }
     );
+
+    this.administrador.status = 2;
+
+    this._administradorService.update(this.token, this.administrador, this.administrador.id).subscribe(
+      response => {
+        if(response.status == 'success'){
+          this.status = 'success';
+          this.administrador = response.administrador;
+
+        } else {
+          this.status = 'error';
+        }
+      },
+      error =>{
+        this.status = 'error';
+      }
+    );
   }
 }
 

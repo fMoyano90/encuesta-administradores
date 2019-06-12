@@ -22,6 +22,7 @@ export class AdministradoresComponent implements OnInit {
   public token;
   public status;
   public msg;
+  public selectedAdmin: Administrador;
 
 
   @Input('data') meals:string[] = [];
@@ -85,4 +86,25 @@ export class AdministradoresComponent implements OnInit {
     this._router.navigate(['/buscar', termino]);
   }
 
+  onUpdate(administrador: Administrador): void {
+    this.selectedAdmin = administrador;
+    administrador.status = 0;
+
+    this._administradorService.update(this.token, this.selectedAdmin, this.selectedAdmin.id).subscribe(
+      response => {
+        if(response.status == 'success'){
+          this.status = 'success';
+          this.selectedAdmin = response.administrador;
+          this.msg = 'El administrado fue actualizado correctamente';
+
+          this._router.navigate(['/administrador', administrador.id]);
+        } else {
+          this.status = 'error';
+        }
+      },
+      error =>{
+        this.status = 'error';
+      }
+    )
+  }
 }

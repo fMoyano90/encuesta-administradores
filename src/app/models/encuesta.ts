@@ -5,5 +5,6 @@ export class Encuesta {
     public respuesta: string,
     public objecion: string,
     public comentario: string,
+    public length?: any
     ) {}
 }

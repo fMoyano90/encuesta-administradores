@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+.correo-enviado{
+    background-color: gainsboro;
+}
+
+.respuesta-recibida{
+    background-color: moccasin;
+}
+.tcara-1{
+    height: 100px;
+}
+.tcara-2{
+    height: 110px;
+}
+.tcara-3{
+    height: 120px;
+}
+.tcara-4{
+    height: 130px;
+}
+.tcara-5{
+    height: 140px;
+}

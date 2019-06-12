@@ -27,7 +27,7 @@
     <div class="col-12 pt-3" id="administradores">
         <table>
             <tr>
-              <th>Administrador</th>
+              <th class="pl-1">Administrador</th>
               <th>Email</th>
               <th>Empresa</th>
               <th>Cargo</th>
@@ -35,8 +35,8 @@
               <th></th>
             </tr>
 
-           <tr *ngFor="let administrador of administradores | paginate: {itemsPerPage:7, currentPage: p }">
-             <td>
+           <tr *ngFor="let administrador of administradores | paginate: {itemsPerPage:7, currentPage: p }" [ngClass]="{'first': administrador.status == 0, 'correo-enviado': administrador.status == 1, 'respuesta-recibida': administrador.status == 2}">
+             <td class="pl-2">
                {{administrador.name}} {{administrador.surname}}
              </td>
              <td>
@@ -49,7 +49,12 @@
               {{administrador.cargo}}
              </td>
              <td>
-                <a [routerLink]="['/administrador', administrador.id]" class="btn btn-success">Enviar Correo / Ver respuestas</a>
+                <form #editarAdmin (ngSubmit)="onUpdate(administrador)">
+                      <input type="hidden" name="status" class="form-control" #estado="ngModel" [(ngModel)]="administrador.status">            
+                      <div class="text-center">
+                        <input type="submit" class="btn btn-success" value="Enviar Correo / Ver respuesta">
+                      </div>
+                  </form>
              </td>
              <td>
                <a [routerLink]="['/editar-administrador', administrador.id]" class="btn btn-primary">Actualizar</a>

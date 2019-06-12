@@ -28,7 +28,7 @@ export class CrearAdminComponent implements OnInit {
       this.page_title =  'Crear nuevo administrador';
       this.identity =  this._userService.getIdentity();
       this.token = this._userService.getToken();
-      this.administrador = new Administrador(1, '', '', '', '', '');
+      this.administrador = new Administrador(1, '', '', '', '', '', 0);
    }
 
   ngOnInit() {

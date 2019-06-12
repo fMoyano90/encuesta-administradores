@@ -20,10 +20,17 @@
     public token;
     public status;
     public msg;
-    public nroRespuestas: number;
+    public correos;
+    public respuestas;
+    public nroRespuestas;
+    public respuestasBuenas;
+    public respuestasIntermedias;
+    public respuestasMalas;
+    public porcentajeBuenas;
 
-    @Input('data') meals:string[] = [];
-  
+
+    @Input('data') meals: string[] = [];
+
     public labels: any = {
       previousLabel: 'Anterior',
       nextLabel: 'Siguiente',
@@ -31,10 +38,10 @@
       screenReaderPageLabel: 'pagina',
       screenReaderCurrentLabel: `You're on page`
   };
-  
-    p: number = 1;
+
+    p = 1;
     collection: any[];
-  
+
     constructor(
       private _encuestaService: EncuestaService,
       private _userService: UserService
@@ -52,7 +59,11 @@
       this._encuestaService.getEncuestas().subscribe(
         response => {
           if (response.status == 'success') {
-            this.encuestas = response.encuestas;
+            this.encuestas = response.encuestas.reverse();
+            this.correos = response.correos;
+            this.respuestasBuenas = response.respuestasBuenas;
+            this.respuestasIntermedias = response.respuestasIntermedias;
+            this.respuestasMalas = response.respuestasMalas;
             console.log(this.encuestas);
           }
         },
@@ -60,5 +71,7 @@
           console.log(error);
         }
       );
+
+      this.porcentajeBuenas = (this.respuestas.length * 100) / this.respuestasBuenas.length;
     }
-}
+  }
