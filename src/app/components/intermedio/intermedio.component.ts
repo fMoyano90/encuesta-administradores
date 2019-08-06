@@ -4,6 +4,8 @@ import { AdministradorService } from '../../services/administrador.service';
 import { Administrador } from '../../models/administrador';
 import { Encuesta } from '../../models/encuesta';
 import { EncuestaService } from '../../services/encuesta.service';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-intermedio',
@@ -24,6 +26,7 @@ export class IntermedioComponent implements OnInit {
   constructor(
     private _administradorService: AdministradorService,
     private _encuestaService: EncuestaService,
+    private _location: Location,
     private _route: ActivatedRoute,
     private _router: Router
   ) {
@@ -102,5 +105,9 @@ export class IntermedioComponent implements OnInit {
         this.status = 'error';
       }
     );
+  }
+  
+  backClicked() {
+    this._location.back();
   }
 }

@@ -45,7 +45,7 @@ export class AdminDetailComponent implements OnInit {
     this.page_title =  'Enviar correo a administrador';
     this.identity =  this._userService.getIdentity();
     this.token = this._userService.getToken();
-    this.correo = new Correo(1, 1, '', '', '', '');
+    this.correo = new Correo(1, 1, '', '', '', '', '');
     this.url = global.url;
   }
 
@@ -90,7 +90,8 @@ export class AdminDetailComponent implements OnInit {
     this.correo.name = this.administrador.name;
     this.correo.surname = this.administrador.surname;
     this.correo.email = this.administrador.email;
-    this.correo.link = 'http://localhost:4200/encuesta/' + this.administrador.id;
+    this.correo.link = 'http://cacciuttolo.xyz/#/encuesta/' + this.administrador.id;
+    this.correo.linkDos = 'http://cacciuttolo.xyz/#/encuesta/misrespuestas/' + this.administrador.id;
 
     // GUARDAR REGISTRO DE ENVIO EN BASE DE DATOS Y ENVIAR CORREO
 

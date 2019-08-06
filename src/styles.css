@@ -7,17 +7,49 @@
     background-color: moccasin;
 }
 .tcara-1{
-    height: 100px;
+    height: 60px;
 }
 .tcara-2{
-    height: 110px;
+    height: 90px;
 }
 .tcara-3{
-    height: 120px;
+    height: 110px;
 }
 .tcara-4{
-    height: 130px;
-}
-.tcara-5{
     height: 140px;
 }
+.tcara-5{
+    height: 160px;
+}
+.colores-cuadros{
+    border: 1px solid black;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  .fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fadeIn {
+    animation-name: fadeIn;
+  }
+

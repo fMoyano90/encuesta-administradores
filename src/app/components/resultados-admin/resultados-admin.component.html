@@ -1,0 +1,23 @@
+<div class="row mb-5">
+  <div class="col-12 pt-3">
+    <div class="row"> 
+      <div class="col-6">
+        <h2>Mi información</h2>
+      </div>
+    </div>
+    <hr>
+    <div class="row animated fadeIn fast">
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6" *ngIf="administrador" style="font-size:19px;">
+        <p><strong>Nombre:</strong> {{administrador.name+' '+administrador.surname}}</p> 
+        <p><strong>Email:</strong> {{administrador.email}}</p>
+        <p><strong>Empresa:</strong> {{administrador.empresa}}</p> 
+        <p><strong>Cargo:</strong> {{administrador.cargo}}</p> 
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 pt-2">
+        <h3>Respuestas emitidas</h3>
+        <hr>
+        <app-encuesta-admin></app-encuesta-admin>
+      </div>
+    </div>
+  </div>
+</div>

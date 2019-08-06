@@ -9,7 +9,7 @@
     <div class="alert alert-success col-5 mt-3" style="height: 50px;" *ngIf="status == 'success'">
         {{msg}}
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="identity.role == 'ADMINISTRADOR'">
       <a [routerLink]="['/crear-admin']" class="btn btn-primary">CREAR ADMINISTRADOR</a>
     </div>
 
@@ -31,11 +31,13 @@
               <th>Email</th>
               <th>Empresa</th>
               <th>Cargo</th>
-              <th></th>
-              <th></th>
+              <div *ngIf="identity.role == 'ADMINISTADOR'">
+                <th></th>
+                <th></th>
+              </div>
             </tr>
 
-           <tr *ngFor="let administrador of administradores | paginate: {itemsPerPage:7, currentPage: p }" [ngClass]="{'first': administrador.status == 0, 'correo-enviado': administrador.status == 1, 'respuesta-recibida': administrador.status == 2}">
+           <tr *ngFor="let administrador of administradores | paginate: {itemsPerPage:5, currentPage: p }" [ngClass]="{'first': administrador.status == 0, 'correo-enviado': administrador.status == 1, 'respuesta-recibida': administrador.status == 2}">
              <td class="pl-2">
                {{administrador.name}} {{administrador.surname}}
              </td>
@@ -56,44 +58,46 @@
                       </div>
                   </form>
              </td>
-             <td>
-               <a [routerLink]="['/editar-administrador', administrador.id]" class="btn btn-primary">Actualizar</a>
-             </td>
-             <td>
-               <!-- Button to Open the Modal -->
-              <button type="button" class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#myModal'+administrador.id">
-                  Eliminar
-              </button>
-
-              <!-- The Modal -->
-              <div class="modal" id="{{ 'myModal'+administrador.id }}">
-                <div class="modal-dialog">
-              <div class="modal-content">
-            
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">¿Quieres borrar este administrador?</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-            
-              <!-- Modal body -->
-              <div class="modal-body">
-                <p>
-                  ¿Vas a borrar definitivamente a {{administrador.name}} {{administrador.surname}}?
-                </p>
-                
-                <p class="alert-danger p-4">Si continuas la información no podra recuperarse</p>
-              </div>
-            
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <a (click)="deleteAdmin(administrador.id)" class="btn btn-danger text-white" data-dismiss="modal">Eliminar</a>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+             <div *ngIf="identity.role == 'ADMINISTRADOR'">
+               <td>
+                 <a [routerLink]="['/editar-administrador', administrador.id]" class="btn btn-primary">Actualizar</a>
+               </td>
+               <td>
+                 <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#myModal'+administrador.id">
+                    Eliminar
+                </button>
+  
+                <!-- The Modal -->
+                <div class="modal" id="{{ 'myModal'+administrador.id }}">
+                  <div class="modal-dialog">
+                <div class="modal-content">
+              
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">¿Quieres borrar este administrador?</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+              
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <p>
+                    ¿Vas a borrar definitivamente a {{administrador.name}} {{administrador.surname}}?
+                  </p>
+                  
+                  <p class="alert-danger p-4">Si continuas la información no podra recuperarse</p>
+                </div>
+              
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <a (click)="deleteAdmin(administrador.id)" class="btn btn-danger text-white" data-dismiss="modal">Eliminar</a>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-            </td>
+              </td>
+             </div>
           </tr>
         </table>
       <div class="text-center pt-5">
@@ -101,6 +105,21 @@
         (pageChange)="p = $event"></pagination-controls>
       </div>
       </div>
+      <div class="row">
+        <div class="col correo-enviado colores-cuadros" style="height: 20px;"></div>
+        <div class="col-3">
+          <p>Correo enviado</p>
+        </div>
+        <div class="col-1 respuesta-recibida colores-cuadros" style="height: 20px;"></div>
+        <div class="col-3">
+          <p>Respuesta recibida</p>
+        </div>
+        <div class="col-1 colores-cuadros" style="height: 20px;"></div>
+        <div class="col-3">
+          <p>Sin acciones</p>
+        </div>
+      </div>
+    
 </div>
 
 

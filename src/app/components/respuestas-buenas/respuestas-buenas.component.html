@@ -1,0 +1,36 @@
+<div class="animated fadeIn fast">
+  <div class="row">
+    <div class="col-6 pt-2">
+      <h1>Respuetas buenas: <small>Total {{respuestasBuenas.length}}</small></h1>
+      <hr>
+    </div>
+    <div class="col-6 pt-4 text-right">
+      <a [routerLink]="['/resultados']" class="btn btn-outline-primary">VOLVER</a>
+    </div>
+  </div>
+  
+  <table class="table table-bordered table-primary">
+    <thead>
+      <tr>
+        <th scope="col">Respuesta</th>
+        <th scope="col">Objeción</th>
+        <th scope="col">Comentario</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let buenas of respuestasBuenas | paginate: {itemsPerPage:5, currentPage: p }; index as i">
+        <td>{{buenas.respuesta}}</td>
+        <td>{{buenas.objecion}}</td>
+        <td>{{buenas.comentario}}</td>
+        <td>{{buenas.created_at | date:'dd/MM/y'}}</td>
+        <td>{{buenas.created_at | date:'shortTime'}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-center pt-3">
+    <pagination-controls [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
+    (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

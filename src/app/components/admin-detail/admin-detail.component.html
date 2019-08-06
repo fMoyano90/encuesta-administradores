@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row animated fadeIn">
   <div class="col-12 pt-3">
     <div class="row"> 
       <div class="col-6">
@@ -28,6 +28,7 @@
           <input type="text" name="email" #email="ngModel" [(ngModel)]="correo" style="display: none">
           <input type="text" name="link" #link="ngModel" [(ngModel)]="correo" style="display: none">
           <input type="submit" value="ENVIAR INVITACIÓN" class="btn btn-lg btn-primary mt-3">
+          <a [routerLink]="['/administradores']" class="btn btn-lg btn-outline-primary mt-3 ml-2">Volver a lista</a>
         </form>
       </div>
     </div>

@@ -3,28 +3,28 @@
 </div>
   
   <!-- Caritas -->
-  <div class="container" *ngIf="administrador">
+  <div class="container animated fadeIn" *ngIf="administrador">
     <div class="row mt-5">
       <div class="col-12 text-center">
         <h2>AYUDANOS A MEJORAR<br><small>POR FAVOR EVALÚA NUESTRO SERVICIO</small></h2>
       </div>
     </div>
     <div class="row mt-5">  
-      <div class="col-4 text-center">
+      <div class="col-sm-12 col-md-4 col-lg-4 text-center">
         <a  [routerLink]="['/encuesta/malo', administrador.id]"><img src="assets/img/malo.png" height="150px"></a>
       </div>
-      <div class="col-4 text-center">
+      <div class="col-sm-12 col-md-4 col-lg-4 text-center">
         <a [routerLink]="['/encuesta/intermedio', administrador.id]"><img src="assets/img/intermedio.png" height="150px"></a>
       </div>
-      <div class="col-4 text-center">
+      <div class="col-sm-12 col-md-4 col-lg-4 text-center">
         <a [routerLink]="['/encuesta/bueno', administrador.id]"><img src="assets/img/bueno.png" height="150px"></a>
       </div>
     </div>
   </div>
   
-  <div class="row mt-5">
+  <div class="row mt-5 animated fadeIn">
     <div class="col-12 text-center text-white mt-5">
-        <div class="col-12 text-right mb-0 pb-0">
+        <div class="col-12 text-right mb-0 pb-0 d-none d-md-block">
           <img src="assets/img/logisticayarriendos.png" width="200px;" style="position: absolute; right: 30px;">
         </div>
     </div>

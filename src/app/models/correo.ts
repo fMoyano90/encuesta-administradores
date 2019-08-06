@@ -6,5 +6,6 @@ export class Correo {
     public surname: string,
     public email: string,
     public link: string,
+    public linkDos: string,
     ) {}
 }

@@ -21,6 +21,10 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { BuscarComponent } from './components/buscar/buscar.component';
+import { RespuestasBuenasComponent } from './components/respuestas-buenas/respuestas-buenas.component';
+import { RespuestasIntermediasComponent } from './components/respuestas-intermedias/respuestas-intermedias.component';
+import { RespuestasMalasComponent } from './components/respuestas-malas/respuestas-malas.component';
+import { ResultadosAdminComponent } from './components/resultados-admin/resultados-admin.component';
 
 const APP_ROUTES: Routes = [
     { path: 'home', component: HomeComponent },
@@ -35,13 +39,17 @@ const APP_ROUTES: Routes = [
     { path: 'encuesta/bueno/:id', component: BuenoComponent },
     { path: 'encuesta/intermedio/:id', component: IntermedioComponent },
     { path: 'encuesta/malo/:id', component: MaloComponent },
+    { path: 'encuesta/misrespuestas/:id', component: ResultadosAdminComponent},
     { path: 'gracias', component: GraciasComponent },
     { path: 'usuarios', component: UsuariosComponent },
     { path: 'editar-usuario/:id', component:  UpdateUserComponent},
     { path: 'resultados', component:  ResultadosComponent},
+    { path: 'resultados/buenos', component:  RespuestasBuenasComponent},
+    { path: 'resultados/intermedios', component:  RespuestasIntermediasComponent},
+    { path: 'resultados/malos', component:  RespuestasMalasComponent},
     { path: 'buscar/:termino', component: BuscarComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 
-export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);
+export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES, {useHash: true});
 

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 // RUTAS
 
 import { APP_ROUTING } from './app.routes';
@@ -36,6 +36,13 @@ import { ResultadosComponent } from './components/resultados/resultados.componen
 import { BuscarComponent } from './components/buscar/buscar.component';
 import { AdminItemComponent } from './components/admin-item/admin-item.component';
 import { AdministradorService } from './services/administrador.service';
+import { RespuestasBuenasComponent } from './components/respuestas-buenas/respuestas-buenas.component';
+import { RespuestasIntermediasComponent } from './components/respuestas-intermedias/respuestas-intermedias.component';
+import { RespuestasMalasComponent } from './components/respuestas-malas/respuestas-malas.component';
+import { ResultadosAdminComponent } from './components/resultados-admin/resultados-admin.component';
+import { EncuestaDosComponent } from './components/encuesta-dos/encuesta-dos.component';
+import { EncuestaTresComponent } from './components/encuesta-tres/encuesta-tres.component';
+import { TipoComentarioComponent } from './components/tipo-comentario/tipo-comentario.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +71,13 @@ import { AdministradorService } from './services/administrador.service';
     ResultadosComponent,
     BuscarComponent,
     AdminItemComponent,
+    RespuestasBuenasComponent,
+    RespuestasIntermediasComponent,
+    RespuestasMalasComponent,
+    ResultadosAdminComponent,
+    EncuestaDosComponent,
+    EncuestaTresComponent,
+    TipoComentarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +86,7 @@ import { AdministradorService } from './services/administrador.service';
     HttpClientModule,
     NgxPaginationModule,
   ],
-  providers: [AdministradorService],
+  providers: [AdministradorService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
